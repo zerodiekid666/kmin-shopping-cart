@@ -14,7 +14,7 @@ export default function Nav() {
             
           </Icon>
           <Typography variant="h6">
-            Kmin Fash
+            Kmin Fashion
           </Typography>
           <Box ml="auto">
             <Button><Link style={style} to='/product'>Products</Link></Button>
