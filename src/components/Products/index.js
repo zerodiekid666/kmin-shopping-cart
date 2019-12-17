@@ -36,7 +36,7 @@ export default class Products extends React.Component {
                       id={ele.id}
                       name={ele.name}
                       src={
-                        "https://c.static-nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/hguw6u4kljhfqursqjd9/joyride-flyknit-aw-running-shoe-zBGLbd.jpg"
+                        ele.src
                       }
                       price={ele.price}
                     />
