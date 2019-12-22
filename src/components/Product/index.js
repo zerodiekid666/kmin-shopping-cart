@@ -7,6 +7,9 @@ const useStyle = makeStyles({
     "& img": {
       maxWidth: "100%"
     }
+  },
+  forImg:{
+    backgroundColor:'black'
   }
 });
 

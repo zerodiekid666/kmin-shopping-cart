@@ -15,8 +15,8 @@ function App() {
         <div className="App">
           <Nav />
           <Route exact path="/" component={Products} />
-          <Route path="/product" component={Products} />
-          <Route path="/detail" component={Detail} />
+          <Route path="/product" exact component={Products} />
+          <Route path="/detail/:id" component={Detail} />
           <Route path="/cart" component={Cart} />
         </div>
       </ThemeProvider>

@@ -1,6 +1,5 @@
 import React from "react";
 import Product from "../Product";
-import Pager from "./pager";
 import { Grid, Box, CircularProgress, Button } from "@material-ui/core";
 import axios from "axios";
 export default class Products extends React.Component {
