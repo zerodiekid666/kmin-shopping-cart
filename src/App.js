@@ -12,7 +12,11 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 
 const initState = {
-  myCart: "helloRedux"
+  myCart: [
+    { name: "The Family T-Shirt In Black", price: 18.5, size: "M", value: "2" },
+    { name: "The Family T-Shirt In Black", price: 18.5, size: "M", value: "2" },
+    { name: "The Family T-Shirt In Black", price: 18.5, size: "M", value: "2" }
+  ]
 };
 
 const rootReducer = (state = initState, action) => {

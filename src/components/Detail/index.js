@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Grid, CircularProgress, Button } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
+import InputAdornment from "@material-ui/core/InputAdornment";
 
 import Axios from "axios";
 
@@ -49,6 +50,15 @@ export default class Detail extends Component {
     },
     gridRight: {
       textAlign: "left"
+    },
+    mr30: {
+      marginRight: "30px"
+    },
+    width300: {
+      width: "250px"
+    },
+    inputSize: {
+      marginBottom: "20px"
     }
   };
 
@@ -81,9 +91,8 @@ export default class Detail extends Component {
 
             <Grid item md={4} style={this.styles.gridRight}>
               <h2>{this.state.products.name}</h2>
-              <h4>{this.state.products.price}$</h4>
 
-              <Grid container spacing={3}>
+              <Grid container spacing={3} style={{ marginBottom: "15px" }}>
                 {this.state.products.size.map(size => {
                   return (
                     <Grid item key={size}>
@@ -100,27 +109,47 @@ export default class Detail extends Component {
                   );
                 })}
               </Grid>
-
               <Grid item lg={4}>
                 <TextField
+                  label="With amount"
                   type="number"
-                  id="margin-none"
                   size="medium"
-                  fullWidth={true}
+                  style={{ width: "200px" }}
                   inputProps={{ min: "0", max: "10" }}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start"></InputAdornment>
+                    )
+                  }}
                   onChange={this.handleValue}
                 />
               </Grid>
 
-              <Grid container item style={this.styles.pt20}>
-                <Button
-                  size="large"
-                  variant="contained"
-                  color="primary"
-                  onClick={this.handleAddToCart}
-                >
-                  Add to cart
-                </Button>
+              <Grid
+                container
+                direction="row"
+                justify="space-between"
+                alignItems="center"
+                style={{ width: "300px" }}
+              >
+                <Grid spacing={2} item>
+                  <h4 style={{ fontSize: "30px" }}>
+                    {this.state.products.price}
+                    <span style={{ fontSize: "24px", paddingLeft: "3px" }}>
+                      $
+                    </span>
+                  </h4>
+                </Grid>
+                <Grid item className={this.styles.mr30}>
+                  <Button
+                    size="large"
+                    variant="contained"
+                    color="primary"
+                    onClick={this.handleAddToCart}
+                  >
+                    Add to cart
+                  </Button>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>

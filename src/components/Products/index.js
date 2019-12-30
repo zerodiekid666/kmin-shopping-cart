@@ -1,7 +1,6 @@
 import React from "react";
 import Product from "../Product";
 import { Grid, Box, CircularProgress, Button } from "@material-ui/core";
-import { Link } from "react-router-dom";
 import axios from "axios";
 export default class Products extends React.Component {
   state = {
