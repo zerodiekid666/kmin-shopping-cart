@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-
+import { connect } from "react-redux";
 import {
   AppBar,
   Toolbar,
@@ -20,13 +20,27 @@ const useStyles = makeStyles({
   },
   link: {
     color: "white",
-    textDecoration: "none"
-  }
+    textDecoration: "none",
+    position: "relative",
+    "& span": {
+      background: "#d4471c",
+      padding: "2px",
+      width: "22px",
+      height: "22px",
+      lineHeight: "22px",
+      display: "block",
+      position: "absolute",
+      top: "-10px",
+      right: "-30px",
+      borderRadius: "50%"
+    }
+  },
+  cart: {}
 });
 
-export default function Nav(props) {
+function Nav(props) {
   const classes = useStyles(props);
-
+  const { cartFromStore } = props;
   return (
     <div>
       <AppBar position="static" className={classes.root}>
@@ -47,6 +61,11 @@ export default function Nav(props) {
             <Button>
               <Link className={classes.link} to="/cart">
                 Cart
+                <span>
+                  {cartFromStore.reduce((a, ele, i) => {
+                    return (a += parseInt(ele.value));
+                  }, 0)}
+                </span>
               </Link>
             </Button>
           </Box>
@@ -55,3 +74,10 @@ export default function Nav(props) {
     </div>
   );
 }
+const mapStateToProps = state => {
+  return {
+    cartFromStore: state.myCart
+  };
+};
+const mapDispatchToProps = null;
+export default connect(mapStateToProps, mapDispatchToProps)(Nav);

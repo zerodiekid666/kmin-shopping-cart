@@ -1,12 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Grid } from "@material-ui/core";
+import { Grid, TextField } from "@material-ui/core";
+import InputAdornment from "@material-ui/core/InputAdornment";
 
 const mapStateToProps = state => {
   return {
     cartFromStore: state.myCart
   };
 };
+
 function Cart(props) {
   const { cartFromStore } = props;
   return (
@@ -21,9 +23,35 @@ function Cart(props) {
       >
         {cartFromStore.map((ele, i) => {
           return (
-            <Grid key={i} item>
-              <Grid component="span">{ele.name}</Grid>
-              <Grid component="span">{ele.price}$</Grid>
+            <Grid
+              key={i}
+              item
+              style={{
+                borderRadius: "10px",
+                padding: "25px",
+                width: "70%",
+                boxShadow: "rgba(0, 0, 0, 0.4) 1px 1px 40px",
+                marginBottom: "20px",
+                display: "flex",
+                justifyContent: "space-around"
+              }}
+            >
+              <Grid component="p">{ele.name}</Grid>
+              <Grid component="p">
+                <TextField
+                  defaultValue={ele.value}
+                  type="number"
+                  style={{ width: "80px" }}
+                  inputProps={{ min: "0", max: "10" }}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start"></InputAdornment>
+                    )
+                  }}
+                  // onChange={this.handleValue}
+                />
+              </Grid>
+              <Grid component="p">{ele.price}$</Grid>
             </Grid>
           );
         })}

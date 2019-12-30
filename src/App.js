@@ -14,7 +14,7 @@ import { Provider } from "react-redux";
 const initState = {
   myCart: [
     { name: "The Family T-Shirt In Black", price: 18.5, size: "M", value: "2" },
-    { name: "The Family T-Shirt In Black", price: 18.5, size: "M", value: "2" },
+    { name: "The Family T-Shirt In Black", price: 18.5, size: "M", value: "8" },
     { name: "The Family T-Shirt In Black", price: 18.5, size: "M", value: "2" }
   ]
 };
