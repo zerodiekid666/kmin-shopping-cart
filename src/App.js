@@ -7,11 +7,12 @@ import theme from "./commons/theme";
 import { BrowserRouter, Route } from "react-router-dom";
 import "./App.css";
 import { ThemeProvider } from "@material-ui/core";
-import { Provider } from "react-redux";
+
 import { createStore } from "redux";
+import { Provider } from "react-redux";
 
 const initState = {
-  cart: [{ name: "Cartpage" }]
+  myCart: "helloRedux"
 };
 
 const rootReducer = (state = initState, action) => {
