@@ -61,11 +61,7 @@ function Nav(props) {
             <Button>
               <Link className={classes.link} to="/cart">
                 Cart
-                <span>
-                  {cartFromStore.reduce((a, ele, i) => {
-                    return (a += parseInt(ele.value));
-                  }, 0)}
-                </span>
+                <span>{cartFromStore}</span>
               </Link>
             </Button>
           </Box>
@@ -76,7 +72,9 @@ function Nav(props) {
 }
 const mapStateToProps = state => {
   return {
-    cartFromStore: state.myCart
+    cartFromStore: state.myCart.reduce((a, ele, i) => {
+      return (a += parseInt(ele.value));
+    }, 0)
   };
 };
 const mapDispatchToProps = null;
