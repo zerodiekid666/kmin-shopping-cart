@@ -36,6 +36,9 @@ function Cart(props) {
                 justifyContent: "space-around"
               }}
             >
+              <Grid component="p">
+                <img src={ele.src} alt={ele.name} />
+              </Grid>
               <Grid component="p">{ele.name}</Grid>
               <Grid component="p">
                 <TextField

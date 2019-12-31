@@ -13,9 +13,30 @@ import { Provider } from "react-redux";
 
 const initState = {
   myCart: [
-    { name: "The Family T-Shirt In Black", price: 18.5, size: "M", value: "2" },
-    { name: "The Family T-Shirt In Black", price: 18.5, size: "M", value: "8" },
-    { name: "The Family T-Shirt In Black", price: 18.5, size: "M", value: "2" }
+    {
+      name: "The Family T-Shirt In Black",
+      price: 18.5,
+      size: "M",
+      value: "2",
+      src:
+        "https://product.hstatic.net/1000042622/product/10_56afc8c6744a48e5a88b5c275151e290_master.jpg"
+    },
+    {
+      name: "The Family T-Shirt In Black",
+      price: 18.5,
+      size: "M",
+      value: "8",
+      src:
+        "https://product.hstatic.net/1000042622/product/10_56afc8c6744a48e5a88b5c275151e290_master.jpg"
+    },
+    {
+      name: "The Family T-Shirt In Black",
+      price: 18.5,
+      size: "M",
+      value: "2",
+      src:
+        "https://product.hstatic.net/1000042622/product/10_56afc8c6744a48e5a88b5c275151e290_master.jpg"
+    }
   ]
 };
 
