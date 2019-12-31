@@ -24,7 +24,7 @@ function Cart(props) {
         {cartFromStore.map((ele, i) => {
           return (
             <Grid
-              key={i}
+              key={Math.random()}
               item
               style={{
                 borderRadius: "10px",

@@ -12,35 +12,32 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 
 const initState = {
-  myCart: [
-    {
-      name: "The Family T-Shirt In Black",
-      price: 18.5,
-      size: "M",
-      value: "2",
-      src:
-        "https://product.hstatic.net/1000042622/product/10_56afc8c6744a48e5a88b5c275151e290_master.jpg"
-    },
-    {
-      name: "The Family T-Shirt In Black",
-      price: 18.5,
-      size: "M",
-      value: "8",
-      src:
-        "https://product.hstatic.net/1000042622/product/10_56afc8c6744a48e5a88b5c275151e290_master.jpg"
-    },
-    {
-      name: "The Family T-Shirt In Black",
-      price: 18.5,
-      size: "M",
-      value: "2",
-      src:
-        "https://product.hstatic.net/1000042622/product/10_56afc8c6744a48e5a88b5c275151e290_master.jpg"
-    }
-  ]
+  myCart: []
 };
 
 const rootReducer = (state = initState, action) => {
+  // eslint-disable-next-line default-case
+  switch (action.type) {
+    case "ADD_TO_CART": {
+      let indexOfProduct = state.myCart.findIndex(ele => {
+        return ele.id === action.payload.id;
+      });
+
+      if (indexOfProduct >= 0) {
+        let newCarts = [...state.myCart];
+        newCarts[indexOfProduct].value = newCarts[indexOfProduct].value + 1;
+        return {
+          ...state,
+          myCart: newCarts
+        };
+      } else {
+        return {
+          ...state,
+          myCart: [...state.myCart, action.payload]
+        };
+      }
+    }
+  }
   return state;
 };
 

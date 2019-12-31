@@ -23,19 +23,31 @@ const useStyle = makeStyles({
 export default function Product(props) {
   const classess = useStyle();
   const { name, id, src, price } = props;
+  const handleAddToCart = () => {
+    const { name, id, src, price } = props;
+    const newProduct = {
+      name: name,
+      id: id,
+      src: src,
+      price: price,
+      value: 1
+    };
+
+    props.addToCart(newProduct);
+  };
   return (
     <Box width="25%" className={classess.product} id={id} p={3}>
       <Link to={`detail/${id}`}>
         <img alt="aa" src={src} />
         <Typography>{name}</Typography>
         <Typography variant="h6">{price}$</Typography>
-        <Button variant="contained" color="primary">
-          Add
-        </Button>
-        <Button variant="outlined" color="primary">
-          Detail
-        </Button>
       </Link>
+      <Button variant="contained" color="primary" onClick={handleAddToCart}>
+        Add
+      </Button>
+      <Button variant="outlined" color="primary">
+        Detail
+      </Button>
     </Box>
   );
 }
