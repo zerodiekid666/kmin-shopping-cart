@@ -25,7 +25,6 @@ function Cart(props) {
           return (
             <Grid
               key={Math.random()}
-              item
               style={{
                 borderRadius: "10px",
                 padding: "25px",
@@ -33,13 +32,25 @@ function Cart(props) {
                 boxShadow: "rgba(0, 0, 0, 0.4) 1px 1px 40px",
                 marginBottom: "20px",
                 display: "flex",
-                justifyContent: "space-around"
+                justifyContent: "space-around",
+                alignItems: "center"
               }}
             >
-              <Grid component="p">
-                <img src={ele.src} alt={ele.name} />
+              <Grid component="p" item>
+                <img src={ele.src} alt={ele.name} height="100px" />
               </Grid>
-              <Grid component="p">{ele.name}</Grid>
+              <Grid
+                component="p"
+                style={{
+                  width: "200px",
+                  textOverflow: "ellipsis",
+                  height: "20px",
+                  overflow: "hidden",
+                  textAlign: "left"
+                }}
+              >
+                {ele.name}
+              </Grid>
               <Grid component="p">
                 <TextField
                   defaultValue={ele.value}

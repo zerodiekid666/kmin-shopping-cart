@@ -25,7 +25,8 @@ const rootReducer = (state = initState, action) => {
 
       if (indexOfProduct >= 0) {
         let newCarts = [...state.myCart];
-        newCarts[indexOfProduct].value = newCarts[indexOfProduct].value + 1;
+        newCarts[indexOfProduct].value =
+          Number(newCarts[indexOfProduct].value) + Number(action.payload.value);
         return {
           ...state,
           myCart: newCarts

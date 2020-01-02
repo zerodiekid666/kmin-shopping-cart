@@ -4,8 +4,9 @@ import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 
 import Axios from "axios";
+import { connect } from "react-redux";
 
-export default class Detail extends Component {
+class Detail extends Component {
   state = {
     products: null,
     value: "",
@@ -34,7 +35,11 @@ export default class Detail extends Component {
       size: this.state.size,
       value: this.state.value
     };
-    console.log(detail);
+    if (detail.value <= 0) {
+      alert("Chon so luong sp");
+    } else {
+      this.props.addToCart(detail);
+    }
   };
 
   styles = {
@@ -160,3 +165,12 @@ export default class Detail extends Component {
     );
   }
 }
+
+const mapStateToProps = () => {};
+const mapDispatchToProps = dispatch => {
+  return {
+    addToCart: product => dispatch({ type: "ADD_TO_CART", payload: product })
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Detail);
