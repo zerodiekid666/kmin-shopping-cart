@@ -48,28 +48,29 @@ class Products extends React.Component {
       <div>
         <h1>Products Page</h1>
         {/* class=row Bootstrap */}
-        <Grid container>
-          <Grid item md={3}>
+        <Grid>
+          {/* <Grid item md={3}>
             <Button variant="contained" onClick={() => this.handleDesc(1)}>
               Up to
             </Button>
             <Button variant="contained" onClick={() => this.handleDesc(-1)}>
               Down to
             </Button>
-          </Grid>
-          <Grid item md={9}>
-            <Box display="flex" flexWrap="wrap">
-              {this.state.products.length > 0 ? (
-                [...this.state.products]
-                  .sort((a, b) => {
-                    return this.state.desc * (a.price - b.price);
-                  })
-                  .splice(
-                    (this.state.page - 1) * this.state.page_size,
-                    this.state.page_size
-                  )
-                  .map(ele => {
-                    return (
+          </Grid> */}
+
+          <Grid container>
+            {this.state.products.length > 0 ? (
+              [...this.state.products]
+                .sort((a, b) => {
+                  return this.state.desc * (a.price - b.price);
+                })
+                .splice(
+                  (this.state.page - 1) * this.state.page_size,
+                  this.state.page_size
+                )
+                .map(ele => {
+                  return (
+                    <Grid item md={3}>
                       <Product
                         key={ele.id}
                         id={ele.id}
@@ -78,16 +79,15 @@ class Products extends React.Component {
                         price={ele.price}
                         addToCart={this.props.addToCart}
                       />
-                    );
-                  })
-              ) : (
-                <CircularProgress size={40} />
-              )}
-            </Box>
+                    </Grid>
+                  );
+                })
+            ) : (
+              <CircularProgress size={40} />
+            )}
           </Grid>
-
-          <Box>{pagination}</Box>
         </Grid>
+        <Box>{pagination}</Box>
       </div>
     );
   }

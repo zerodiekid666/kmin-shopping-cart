@@ -4,6 +4,7 @@ import Detail from "./components/Detail";
 import Cart from "./components/Cart";
 import Nav from "./components/Nav";
 import theme from "./commons/theme";
+import Home from "./components/Home";
 import { BrowserRouter, Route } from "react-router-dom";
 import "./App.css";
 import { ThemeProvider } from "@material-ui/core";
@@ -83,7 +84,7 @@ function App() {
         <Provider store={store}>
           <div className="App">
             <Nav />
-            <Route exact path="/" component={Products} />
+            <Route exact path="/" component={Home} />
             <Route path="/product" exact component={Products} />
             <Route exact path="/detail/:id" component={Detail} />
             <Route path="/cart" component={Cart} />

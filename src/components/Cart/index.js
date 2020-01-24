@@ -25,6 +25,7 @@ function Cart(props) {
         alignItems="flex-start"
       >
         {cartFromStore.map((ele, i) => {
+          console.log(ele);
           return (
             <Grid
               key={Math.random()}

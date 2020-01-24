@@ -51,7 +51,10 @@ class Detail extends Component {
     },
     imgTag: {
       height: "250px",
-      display: "inline-block"
+      display: "inline-block",
+      boxShadow: "rgba(0, 0, 0, 0.06) 25px 25px 35px",
+      borderRadius: "5px",
+      padding: "5px 20px"
     },
     gridRight: {
       textAlign: "left"
