@@ -1,16 +1,19 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Grid, TextField } from "@material-ui/core";
+import { Grid, TextField, Button } from "@material-ui/core";
 import InputAdornment from "@material-ui/core/InputAdornment";
 
-const mapStateToProps = state => {
-  return {
-    cartFromStore: state.myCart
-  };
-};
-
 function Cart(props) {
-  const { cartFromStore } = props;
+  const { cartFromStore, removeFromStore, updateValue } = props;
+  const handleUpdateCart = (e, id) => {
+    console.log(e);
+
+    if (Number(e.target.value) === 0) {
+      return removeFromStore(id);
+    } else {
+      updateValue(id, e.target.value);
+    }
+  };
   return (
     <div>
       <h1>Cart Page</h1>
@@ -28,7 +31,6 @@ function Cart(props) {
               style={{
                 borderRadius: "10px",
                 padding: "25px",
-                width: "70%",
                 boxShadow: "rgba(0, 0, 0, 0.4) 1px 1px 40px",
                 marginBottom: "20px",
                 display: "flex",
@@ -37,7 +39,7 @@ function Cart(props) {
               }}
             >
               <Grid component="p" item>
-                <img src={ele.src} alt={ele.name} height="100px" />
+                <img src={ele.src} alt={ele.name} height="70px" />
               </Grid>
               <Grid
                 component="p"
@@ -62,19 +64,42 @@ function Cart(props) {
                       <InputAdornment position="start"></InputAdornment>
                     )
                   }}
-                  // onChange={this.handleValue}
+                  onChange={e => handleUpdateCart(e, ele.id)}
                 />
               </Grid>
               <Grid component="p">{ele.price}$</Grid>
+              <Grid component="p">
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => removeFromStore(ele.id)}
+                >
+                  Remove
+                </Button>
+              </Grid>
             </Grid>
           );
         })}
+
+        <Grid xs={4}></Grid>
       </Grid>
       {/* <h2>{props.cartFromStore}</h2> */}
     </div>
   );
 }
 
-const mapDispatchToProps = null;
+const mapStateToProps = state => {
+  return {
+    cartFromStore: state.myCart
+  };
+};
 
+const mapDispatchToProps = dispatch => {
+  return {
+    removeFromStore: id => dispatch({ type: "REMOVE_CART", payload: id }),
+
+    updateValue: (id, value) =>
+      dispatch({ type: "UPDATE_CART_VALUE", payload: { id, value } })
+  };
+};
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

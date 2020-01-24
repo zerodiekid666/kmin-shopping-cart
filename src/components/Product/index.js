@@ -24,7 +24,6 @@ export default function Product(props) {
   const classess = useStyle();
   const { name, id, src, price } = props;
   const handleAddToCart = () => {
-    const { name, id, src, price } = props;
     const newProduct = {
       name: name,
       id: id,

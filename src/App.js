@@ -16,9 +16,9 @@ const initState = {
 };
 
 const rootReducer = (state = initState, action) => {
-  // eslint-disable-next-line default-case
   switch (action.type) {
     case "ADD_TO_CART": {
+      // find Same index of product
       let indexOfProduct = state.myCart.findIndex(ele => {
         return ele.id === action.payload.id;
       });
@@ -38,8 +38,37 @@ const rootReducer = (state = initState, action) => {
         };
       }
     }
+
+    case "REMOVE_CART": {
+      let newCart = [...state.myCart].filter(ele => {
+        return ele.id !== action.payload;
+      });
+
+      console.log(action.payload);
+      return {
+        ...state,
+        myCart: newCart
+      };
+    }
+
+    case "UPDATE_CART_VALUE": {
+      let indexOfProduct = state.myCart.findIndex(ele => {
+        return ele.id === action.payload.id;
+      });
+
+      console.log(action.payload.id);
+      console.log(action.payload.value);
+
+      let newCarts = [...state.myCart];
+      newCarts[indexOfProduct].value = action.payload.value;
+      return {
+        ...state,
+        myCart: newCarts
+      };
+    }
+    default:
+      return state;
   }
-  return state;
 };
 
 const store = createStore(
