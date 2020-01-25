@@ -2,9 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Grid, Typography, Box, Button } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
-
 import CardMedia from "@material-ui/core/CardMedia";
-
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyle = makeStyles({
@@ -12,6 +10,8 @@ const useStyle = makeStyles({
     boxShadow: "rgba(0, 0, 0, 0.1) 0px 0px 20px",
     position: "relative",
     transition: "0.4s box-shadow ease",
+    padding: "25px 10px",
+    marginBottom: "10px",
     "& img": {
       maxWidth: "100%"
     },
@@ -107,70 +107,81 @@ function Cart(props) {
       <h1>Cart Page</h1>
       {/* {console.log(cartFromStore)} */}
       {cartFromStore.length > 0 ? (
-        <Grid container>
-          {cartFromStore.map((ele, i) => {
-            // console.log(ele);
-            return (
-              <Grid item key={i}>
-                <Box className={cssClass.product} id={ele.id} p={3}>
-                  <Button
-                    onClick={() => handleRemoveFromStore(ele.id)}
-                    variant="contained"
-                    color="primary"
-                    className={cssClass.deleteBtn}
-                  >
-                    X
-                  </Button>
-                  <CardMedia
-                    title={ele.name}
-                    className={cssClass.media}
-                    image={ele.src}
-                  />
-                  <Typography className={cssClass.title}>{ele.name}</Typography>
-                  <Typography variant="h6" className={cssClass.price}>
-                    {ele.price}$
-                  </Typography>
-
-                  <Box>
+        <Grid
+          container
+          direction="row"
+          justify="flex-start"
+          alignItems="flex-start"
+        >
+          <Grid
+            item
+            xs={9}
+            container
+            direction="row"
+            justify="center"
+            alignItems="flex-start"
+          >
+            {cartFromStore.map((ele, i) => {
+              // console.log(ele);
+              return (
+                <Grid item key={i}>
+                  <Box className={cssClass.product} id={ele.id}>
                     <Button
+                      onClick={() => handleRemoveFromStore(ele.id)}
                       variant="contained"
                       color="primary"
-                      className={cssClass.btn}
-                      onClick={() => handleUpdateCart(ele.id, -1, ele)}
+                      className={cssClass.deleteBtn}
                     >
-                      -
+                      X
                     </Button>
-                    <TextField
-                      value={ele.value}
-                      className={cssClass.inputCart}
-                      id="standard-number"
-                      type="number"
-                      margin="dense"
-                      InputLabelProps={{
-                        shrink: true
-                      }}
+                    <CardMedia
+                      title={ele.name}
+                      className={cssClass.media}
+                      image={ele.src}
                     />
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={() => handleUpdateCart(ele.id, 1, ele)}
-                      className={cssClass.btn}
-                    >
-                      +
-                    </Button>
-                  </Box>
-                </Box>
-              </Grid>
-            );
-          })}
+                    <Typography className={cssClass.title}>
+                      {ele.name}
+                    </Typography>
+                    <Typography variant="h6" className={cssClass.price}>
+                      {ele.price}$
+                    </Typography>
 
-          <Grid item xs={12}>
-            <Box>
-              <dl>
-                <dt></dt>
-                <dd></dd>
-              </dl>
-            </Box>
+                    <Box>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        className={cssClass.btn}
+                        onClick={() => handleUpdateCart(ele.id, -1, ele)}
+                      >
+                        -
+                      </Button>
+                      <TextField
+                        value={ele.value}
+                        className={cssClass.inputCart}
+                        id="standard-number"
+                        type="number"
+                        margin="dense"
+                        InputLabelProps={{
+                          shrink: true
+                        }}
+                      />
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={() => handleUpdateCart(ele.id, 1, ele)}
+                        className={cssClass.btn}
+                      >
+                        +
+                      </Button>
+                    </Box>
+                  </Box>
+                </Grid>
+              );
+            })}
+          </Grid>
+
+          <Grid item xs={3}>
+            Cart
           </Grid>
         </Grid>
       ) : (
@@ -191,7 +202,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     removeFromStore: id => dispatch({ type: "REMOVE_CART", payload: id }),
-
     updateValue: (id, value, cal) =>
       dispatch({ type: "UPDATE_CART_VALUE", payload: { id, value, cal } })
   };
