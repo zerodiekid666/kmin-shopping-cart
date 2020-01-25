@@ -46,7 +46,9 @@ function Nav(props) {
       <AppBar position="static" className={classes.root}>
         <Toolbar>
           <Icon edge="start" color="inherit" aria-label="menu"></Icon>
-          <Typography variant="h6">Kmin Fashion</Typography>
+          <Link className={classes.link} to="/">
+            <Typography variant="h6">Kmin Fashion</Typography>
+          </Link>
           <Box ml="auto">
             <Button>
               <Link className={classes.link} to="/product">
@@ -72,7 +74,7 @@ function Nav(props) {
 }
 const mapStateToProps = state => {
   return {
-    cartFromStore: state.myCart.reduce((a, ele, i) => {
+    cartFromStore: state.shopCart.reduce((a, ele, i) => {
       return (a += parseInt(ele.value));
     }, 0)
   };

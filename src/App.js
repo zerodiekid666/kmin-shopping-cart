@@ -13,58 +13,56 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 
 const initState = {
-  myCart: []
+  shopCart: []
 };
 
 const rootReducer = (state = initState, action) => {
   switch (action.type) {
     case "ADD_TO_CART": {
       // find Same index of product
-      let indexOfProduct = state.myCart.findIndex(ele => {
+      let indexOfProduct = state.shopCart.findIndex(ele => {
         return ele.id === action.payload.id;
       });
 
       if (indexOfProduct >= 0) {
-        let newCarts = [...state.myCart];
+        let newCarts = [...state.shopCart];
         newCarts[indexOfProduct].value =
           Number(newCarts[indexOfProduct].value) + Number(action.payload.value);
         return {
           ...state,
-          myCart: newCarts
+          shopCart: newCarts
         };
       } else {
         return {
           ...state,
-          myCart: [...state.myCart, action.payload]
+          shopCart: [...state.shopCart, action.payload]
         };
       }
     }
 
     case "REMOVE_CART": {
-      let newCart = [...state.myCart].filter(ele => {
+      console.log(action.payload);
+      let newCart = [...state.shopCart].filter(ele => {
         return ele.id !== action.payload;
       });
 
-      console.log(action.payload);
       return {
         ...state,
-        myCart: newCart
+        shopCart: newCart
       };
     }
 
     case "UPDATE_CART_VALUE": {
-      let indexOfProduct = state.myCart.findIndex(ele => {
+      let indexOfProduct = state.shopCart.findIndex(ele => {
         return ele.id === action.payload.id;
       });
 
-      console.log(action.payload.id);
-      console.log(action.payload.value);
-
-      let newCarts = [...state.myCart];
-      newCarts[indexOfProduct].value = action.payload.value;
+      let newCarts = [...state.shopCart];
+      newCarts[indexOfProduct].value =
+        Number(newCarts[indexOfProduct].value) + action.payload.value;
       return {
         ...state,
-        myCart: newCarts
+        shopCart: newCarts
       };
     }
     default:

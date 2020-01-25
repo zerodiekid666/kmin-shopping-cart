@@ -68,11 +68,11 @@ class Products extends React.Component {
                   (this.state.page - 1) * this.state.page_size,
                   this.state.page_size
                 )
-                .map(ele => {
+                .map((ele, i) => {
                   return (
-                    <Grid item md={3}>
+                    <Grid item key={i} md={3}>
                       <Product
-                        key={ele.id}
+                        key={this.i}
                         id={ele.id}
                         name={ele.name}
                         src={ele.src}

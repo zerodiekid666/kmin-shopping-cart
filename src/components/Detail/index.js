@@ -53,7 +53,7 @@ class Detail extends Component {
       height: "250px",
       display: "inline-block",
       boxShadow: "rgba(0, 0, 0, 0.06) 25px 25px 35px",
-      borderRadius: "5px",
+      borderRadius: "2px",
       padding: "5px 20px"
     },
     gridRight: {
@@ -87,7 +87,7 @@ class Detail extends Component {
       <>
         {this.state.products !== null ? (
           <Grid container style={this.styles.gridContainer}>
-            <Grid style={this.styles.gridLeft} item md={4}>
+            <Grid style={this.styles.gridLeft} item sm={4} xs={12} md={4}>
               <p>
                 <img
                   style={this.styles.imgTag}
@@ -97,7 +97,7 @@ class Detail extends Component {
               </p>
             </Grid>
 
-            <Grid item md={4} style={this.styles.gridRight}>
+            <Grid item sm={6} xs={12} md={6} style={this.styles.gridRight}>
               <h2>{this.state.products.name}</h2>
 
               <Grid container spacing={3} style={{ marginBottom: "15px" }}>

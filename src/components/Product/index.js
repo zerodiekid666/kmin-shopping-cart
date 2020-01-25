@@ -14,17 +14,28 @@ const useStyle = makeStyles({
     },
     "& a": {
       textDecoration: "none"
-    },
-    height: "475px"
+    }
   },
   forImg: {
-    backgroundColor: "black"
+    "& img": {
+      backgroundColor: "black",
+      maxHeight: "350px"
+    }
   },
   boxBtn: {
-    position: "absolute",
-    bottom: "3vw",
-    left: 0,
     width: "100%"
+  },
+  title: {
+    color: "#000",
+    maxWidth: "240px",
+    height: "50px",
+    overflow: "hidden",
+    // whiteSpace: "nowrap",
+    textOverflow: "ellipsis"
+  },
+  price: {
+    color: "#000",
+    marginBottom: "10px"
   }
 });
 
@@ -45,9 +56,13 @@ export default function Product(props) {
   return (
     <Box className={classess.product} id={id} p={3}>
       <Link to={`detail/${id}`}>
-        <img alt="aa" src={src} />
-        <Typography>{name}</Typography>
-        <Typography variant="h6">{price}$</Typography>
+        <Typography className={classess.forImg}>
+          <img alt="aa" src={src} />
+        </Typography>
+        <Typography className={classess.title}>{name}</Typography>
+        <Typography variant="h6" className={classess.price}>
+          {price}$
+        </Typography>
       </Link>
       <Box className={classess.boxBtn}>
         <Button variant="contained" color="primary" onClick={handleAddToCart}>
