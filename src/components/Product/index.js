@@ -30,6 +30,7 @@ const useStyle = makeStyles({
     maxWidth: "240px",
     height: "50px",
     overflow: "hidden",
+    margin: "auto",
     // whiteSpace: "nowrap",
     textOverflow: "ellipsis"
   },

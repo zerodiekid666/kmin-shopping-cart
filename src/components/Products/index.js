@@ -12,6 +12,15 @@ class Products extends React.Component {
     desc: 0
   };
 
+  style = {
+    circleWait: {
+      position: "fixed",
+      top: "45%",
+      left: "50%",
+      transform: "translate(-50%,-50%)"
+    }
+  };
+
   handlePager = value => {
     this.setState({ page: value });
   };
@@ -83,11 +92,11 @@ class Products extends React.Component {
                   );
                 })
             ) : (
-              <CircularProgress size={40} />
+              <CircularProgress style={this.style.circleWait} size={40} />
             )}
           </Grid>
         </Grid>
-        <Box>{pagination}</Box>
+        {/* <Box>{pagination}</Box> */}
       </div>
     );
   }

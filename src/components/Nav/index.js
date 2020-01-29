@@ -56,11 +56,6 @@ function Nav(props) {
               </Link>
             </Button>
             <Button>
-              <Link className={classes.link} to="/detail">
-                Detail
-              </Link>
-            </Button>
-            <Button>
               <Link className={classes.link} to="/cart">
                 Cart
                 <span>{cartFromStore}</span>

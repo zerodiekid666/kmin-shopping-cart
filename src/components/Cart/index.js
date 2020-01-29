@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Grid, Typography, Box, Button } from "@material-ui/core";
+
 import TextField from "@material-ui/core/TextField";
 import CardMedia from "@material-ui/core/CardMedia";
 import { makeStyles } from "@material-ui/core/styles";
@@ -11,7 +12,6 @@ const useStyle = makeStyles({
     position: "relative",
     transition: "0.4s box-shadow ease",
     padding: "25px 10px",
-    marginBottom: "10px",
     "& img": {
       maxWidth: "100%"
     },
@@ -40,8 +40,7 @@ const useStyle = makeStyles({
     width: "50px",
     margin: "0 20px",
     "& input": {
-      textAlign: "center",
-      paddingLeft: "13px"
+      textAlign: "center"
     }
   },
   title: {
@@ -54,11 +53,84 @@ const useStyle = makeStyles({
   price: {
     marginBottom: "10px"
   },
-  deleteBtn: {},
+  deleteBtn: {
+    marginLeft: "195px",
+    padding: 0,
+    minWidth: "30px",
+    marginTop: "-15px"
+  },
   btn: {
     // fontSize: "23px",
     // padding: "0",
     // minWidth: "55px"
+  },
+
+  cartInfo: {
+    position: "fixed",
+    right: "2.4%",
+    padding: "0 24px 10px",
+    borderRadius: "5px",
+    boxShadow: "1px 1px 25px rgba(0, 0, 0, 0.1)",
+    textAlign: "left",
+    "& h3": {
+      textTransform: "uppercase",
+      marginBottom: 0
+    },
+    "& h4": {
+      fontStyle: "italic",
+      fontWeight: "lighter",
+      color: "#cbc9c9",
+      margin: "0 0 20px"
+    },
+    "& ul": {
+      listStyle: "none"
+    },
+    "& li": {},
+    "& span": {
+      fontSize: "14px"
+    },
+    "& p": {
+      display: "inline-block",
+      fontWeight: "bold"
+    }
+  },
+  cartGroup: {
+    margin: "15px 0",
+    padding: "0 15px",
+    maxHeight: "260px",
+    overflowY: "scroll"
+  },
+  cartList: {
+    "& dl": {
+      display: "flex",
+      justifyContent: "space-between",
+      alignContent: "flex-start"
+    },
+    "& dt": {
+      "& p": {
+        margin: 0
+      }
+    },
+    "& dd": {
+      width: "54px",
+      textAlign: "right",
+      fontSize: "14px"
+    }
+  },
+  cartTotal: {
+    marginTop: "24px",
+    "& dt": {
+      fontWeight: "bold",
+      borderBottom: "1px solid #eee",
+      margin: "0 0 10px",
+      padding: "0 0 10px"
+    },
+    "& dd": {
+      fontSize: "25px",
+      fontWeight: "bold",
+      textAlign: "right",
+      marginRight: "0"
+    }
   }
 });
 
@@ -115,10 +187,13 @@ function Cart(props) {
         >
           <Grid
             item
-            xs={9}
+            spacing={2}
+            md={7}
+            sm={5}
+            xs={4}
             container
             direction="row"
-            justify="center"
+            justify="flex-start"
             alignItems="flex-start"
           >
             {cartFromStore.map((ele, i) => {
@@ -159,10 +234,9 @@ function Cart(props) {
                         value={ele.value}
                         className={cssClass.inputCart}
                         id="standard-number"
-                        type="number"
                         margin="dense"
-                        InputLabelProps={{
-                          shrink: true
+                        InputProps={{
+                          readOnly: true
                         }}
                       />
                       <Button
@@ -180,15 +254,46 @@ function Cart(props) {
             })}
           </Grid>
 
-          <Grid item xs={3}>
-            Cart
+          <Grid item md={4} sm={7} xs={6} className={cssClass.cartInfo}>
+            <h3>
+              Look ! <br />
+              What you got there:{" "}
+            </h3>
+
+            <Grid className={cssClass.cartGroup}>
+              {cartFromStore.map((ele, i) => {
+                return (
+                  <Grid className={cssClass.cartList}>
+                    <dl>
+                      <dt>
+                        <p>{ele.name}</p>
+                        <br />
+                        <span>x{ele.value}</span>
+                      </dt>
+
+                      <dd>{Number(ele.value) * Number(ele.price)}$</dd>
+                    </dl>
+                  </Grid>
+                );
+              })}
+            </Grid>
+            <Grid className={cssClass.cartTotal}>
+              <dl>
+                <dt>Total:</dt>
+                <dd>
+                  {cartFromStore.reduce((acc, ele, i) => {
+                    return (acc += Number(ele.price * ele.value));
+                  }, 0)}
+                  $
+                </dd>
+              </dl>
+              <h4>you loyal!</h4>
+            </Grid>
           </Grid>
         </Grid>
       ) : (
-        <h2>You dont have any carts</h2>
+        <h2>You don't have any carts</h2>
       )}
-
-      {/* <h2>{props.cartFromStore}</h2> */}
     </div>
   );
 }
