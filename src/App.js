@@ -82,7 +82,7 @@ function App() {
         <Provider store={store}>
           <div className="App">
             <Nav />
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" component={Products} />
             <Route path="/product" exact component={Products} />
             <Route exact path="/detail/:id" component={Detail} />
             <Route path="/cart" component={Cart} />
